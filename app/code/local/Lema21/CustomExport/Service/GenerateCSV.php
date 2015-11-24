@@ -73,6 +73,8 @@ class Lema21_CustomExport_Service_GenerateCSV {
             }
 
             // endline
+            // strip last comma
+            $lineItem = rtrim($lineItem, ",");
             $this->_contentCSV .=$lineItem ."\n";
         }
     }
