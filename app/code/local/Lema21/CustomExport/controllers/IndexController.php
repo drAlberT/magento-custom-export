@@ -1,6 +1,5 @@
 <?php
 
-
 require_once 'Mage/Adminhtml/controllers/Sales/OrderController.php';
 
 class Lema21_CustomExport_IndexController 
@@ -10,14 +9,13 @@ class Lema21_CustomExport_IndexController
 
         public function indexAction()
         {
-            
             $post = $this->getRequest()->getPost();
 
             $orderIdsList = $post['order_ids'];
 
-             $serviceGenerateCSV = new Lema21_CustomExport_Service_GenerateCSV($orderIdsList);
-             $contentCSV = $serviceGenerateCSV->call();
+            $serviceGenerateCSV = new Lema21_CustomExport_Service_GenerateCSV($orderIdsList);
+            $contentCSV = $serviceGenerateCSV->call();
 
-             $this->_prepareDownloadResponse(self::FILENAME, $contentCSV);               
+            $this->_prepareDownloadResponse(self::FILENAME, $contentCSV);               
         }
     }
