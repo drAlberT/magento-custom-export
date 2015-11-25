@@ -1,31 +1,31 @@
 <?xml version="1.0"?>
 <config>
  <modules>
-  <Lema21_CustomExport>
-   <version>0.9</version>
-</Lema21_CustomExport>
+  <Albert_CustomExport>
+   <version>1.0.0</version>
+</Albert_CustomExport>
 </modules>
 <global>
     <models>
         <custom_export>
-            <class>Lema21_CustomExport_Model</class>
+            <class>Albert_CustomExport_Model</class>
         </custom_export>
     </models>
     <helpers>
         <custom_export>
-            <class>Lema21_CustomExport_Helper</class>
+            <class>Albert_CustomExport_Helper</class>
         </custom_export>
     </helpers>
 </global>
 <admin>
     <routers>
-        <Lema21_CustomExport>
+        <Albert_CustomExport>
             <use>admin</use>
             <args>
-                <module>Lema21_CustomExport</module>
-                <frontName>lema21_custom_export</frontName>
+                <module>Albert_CustomExport</module>
+                <frontName>Albert_custom_export</frontName>
             </args>
-        </Lema21_CustomExport>
+        </Albert_CustomExport>
     </routers>
 </admin>
 <adminhtml>
@@ -37,14 +37,14 @@
                     <method>includeOption</method>
                 </option_in_custom_export>
             </observers>
-        </adminhtml_block_html_before>          
+        </adminhtml_block_html_before>
     </events>
 
     <translate>
         <modules>
             <qualquer_id_unico_aqui>
                 <files>
-                    <default>Lema21_CustomExport.csv</default>
+                    <default>Albert_CustomExport.csv</default>
                 </files>
             </qualquer_id_unico_aqui>
         </modules>

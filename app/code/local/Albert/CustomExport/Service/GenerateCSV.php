@@ -1,6 +1,6 @@
 <?php
 
-class Lema21_CustomExport_Service_GenerateCSV
+class Albert_CustomExport_Service_GenerateCSV
 {
     private $_orderIds;
     private $_collectionOrders;
@@ -16,75 +16,62 @@ class Lema21_CustomExport_Service_GenerateCSV
         $this->_collectionOrders = array();
 
         foreach ($this->_orderIds as $id) {
-            $instance = Mage::getModel("sales/order")->load($id);
+            $instance = Mage::getModel('sales/order')->load($id);
             array_push($this->_collectionOrders, $instance);
         }
     }
 
     private function _prepareData($templateLine)
     {
-        $this->_contentCSV = "";
+        $this->_contentCSV = '';
 
         //iterate on the orders selected
         foreach ($this->_collectionOrders as $order) {
-            $lineItem = "";
+            $lineItem = '';
 
             // iterate on the itens in template
             foreach ($templateLine as $t) {
-
                 // order.increment_id => $order->getData("increment_id");
                 // getAttributeByCode($attribute, $order)
-                $item = "";
-                list($object, $attribute) = explode(".", $t);
+                $item = '';
+                list($object, $attribute) = explode('.', $t);
 
                 switch ($object) {
-
-                    case "order":
-
+                    case 'order':
                         $item = $order->getData($attribute);
                         break;
-
-                    case "customer":
-
-                        if ($attribute=="name") {
-                            $item = $order->getData("customer_firstname") . " " .
-                            $order->getData("customer_lastname");
+                    case 'customer':
+                        if ('name' == $attribute) {
+                            $item = sprintf('%s %s',
+                                $order->getData('customer_firstname'),
+                                $order->getData('customer_lastname')
+                            );
                         } else {
                             $item = $order->getData("customer_{$attribute}");
                         }
-
-                    break;
-
-                    case "address":
-
+                        break;
+                    case 'address':
                         $address = $order->getShippingAddress();
-
-                        if (strpos($attribute, "street_")!==false) {
-                            $street = explode("_", $attribute);
+                        if (false !== strpos($attribute, 'street_')) {
+                            $street = explode('_', $attribute);
                             $item = $address->getStreet($street[1]);
                         } else {
                             $item = $address->getData($attribute);
                         }
-
-                    break;
+                        break;
                 }
-
-                $lineItem.="{$item},";
+                $lineItem .= trim($item) . ',';
             }
 
-            // endline
-            // strip last comma
-            $lineItem = rtrim($lineItem, ",");
-            $this->_contentCSV .=$lineItem ."\n";
+            $lineItem = rtrim($lineItem, ','); // strip last comma
+            $this->_contentCSV .= $lineItem . "\n";
         }
     }
-    
+
     public function call()
     {
         $this->_loadOrderObjects();
-        
-        $templateLine = Mage::helper("custom_export")->loadTemplate();
-
+        $templateLine = Mage::helper('custom_export')->loadTemplate();
         $this->_prepareData($templateLine);
 
         return $this->_contentCSV;

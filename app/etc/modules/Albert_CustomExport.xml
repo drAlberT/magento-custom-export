@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Magento module
+ * @package    Albert_CustomExport
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+
+  Module to export sales to custom CSV
+
+  CSV template file available in Albert/CustomExport/Template/template.csv
+
+  Possible Entities: order | customer | address
+
+  Example:
+  order.increment_id , order.status , order.grand_total , customer.email
+
+ */-->
+<config>
+    <modules>
+        <Albert_CustomExport>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Albert_CustomExport>
+    </modules>
+</config>

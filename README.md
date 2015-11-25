@@ -1,14 +1,18 @@
-magent_custom_export
+Magento custom sales export
 ====================
 
-Module to Export sales in Magento to custom CSV!
+Magento module to export sales to CSV in a customised fashion
 
+CSV template file available in `Albert/CustomExport/Template/template.csv`
 
+Possible entities to be used are:
+- Order
+- Customer
+- Address
 
-CSV template file available in Lema21/CustomExport/Template/template.csv
+Example:
+---
+```
+order.increment_id , order.status , order.grand_total , customer.email
+```
 
-Possible Entities: order|customer|address
-  
-Example: 
-
-order.increment_id | order.status | order.grand_total | customer.email
