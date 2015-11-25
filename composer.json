@@ -1,0 +1,22 @@
+{
+    "name": "dralbert/magento-custom-export",
+    "description": "Magento module to export sales in a customised CSV",
+    "homepage": "https://github.com/drAlberT/",
+    "license": "MIT",
+    "type": "module",
+    "keywords": ["magento", "module", "export"],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "^1.10"
+    },
+    "scripts": {
+        "cs-fix": [
+            "php-cs-fixer -vv -n fix; echo"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
