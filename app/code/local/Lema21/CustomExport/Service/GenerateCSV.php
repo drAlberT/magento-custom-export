@@ -1,12 +1,13 @@
 <?php
 
-class Lema21_CustomExport_Service_GenerateCSV {
-
+class Lema21_CustomExport_Service_GenerateCSV
+{
     private $_orderIds;
     private $_collectionOrders;
     private $_contentCSV;
 
-    public function __construct($ordersId) {
+    public function __construct($ordersId)
+    {
         $this->_orderIds = $ordersId;
     }
 
@@ -14,7 +15,7 @@ class Lema21_CustomExport_Service_GenerateCSV {
     {
         $this->_collectionOrders = array();
 
-        foreach($this->_orderIds as $id) {
+        foreach ($this->_orderIds as $id) {
             $instance = Mage::getModel("sales/order")->load($id);
             array_push($this->_collectionOrders, $instance);
         }
@@ -25,19 +26,18 @@ class Lema21_CustomExport_Service_GenerateCSV {
         $this->_contentCSV = "";
 
         //iterate on the orders selected
-        foreach($this->_collectionOrders as $order) {
-
+        foreach ($this->_collectionOrders as $order) {
             $lineItem = "";
 
             // iterate on the itens in template
-            foreach($templateLine as $t) {
+            foreach ($templateLine as $t) {
 
                 // order.increment_id => $order->getData("increment_id");
                 // getAttributeByCode($attribute, $order)
                 $item = "";
                 list($object, $attribute) = explode(".", $t);
 
-                switch($object) {
+                switch ($object) {
 
                     case "order":
 
@@ -89,5 +89,4 @@ class Lema21_CustomExport_Service_GenerateCSV {
 
         return $this->_contentCSV;
     }
-
 }

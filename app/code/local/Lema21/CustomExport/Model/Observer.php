@@ -1,13 +1,13 @@
 <?php
 
-class Lema21_CustomExport_Model_Observer {
-    
+class Lema21_CustomExport_Model_Observer
+{
     public function includeOption($observer)
     {
         // Get code of grid
         $idBlockObserver = $observer->getEvent()->getBlock()->getId();
 
-        if ($idBlockObserver=="sales_order_grid" ) {
+        if ($idBlockObserver=="sales_order_grid") {
             
             // copy+paste by "delete orders" module, thanks Stefan Wieczorek
             $block = $observer->getEvent()
@@ -22,5 +22,4 @@ class Lema21_CustomExport_Model_Observer {
             }
         }
     }
-
 }

@@ -7,7 +7,7 @@ return $mageConfig
     ->setUsingCache(true)
     ->finder(
         $mageConfig->getFinder()
-            ->in(__DIR__)
+            ->in(__DIR__.'/app')
     )
 ;
 
